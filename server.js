@@ -21,6 +21,18 @@ app.get('/aboutme', function(req, res){
     res.send("I shall put up my profile shortly.");
 });
 
+app.get('/page2', function(req, res){
+    res.send("Page 2 of my webapp");
+});
+
+app.get("/page3", function(req, res){
+    res.send("Page3 of my webapp");
+});
+
+
+
+
+
 
 var port = 8080; // Use 8080 for local development because you might already have apache running on 80
 app.listen(8080, function () {
