@@ -5,6 +5,13 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
+app.get('/counter', function(req, res){
+    counter += 1;
+    res.send("This has been opened " + counter.toString() + " times");
+});
+
+
+
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
