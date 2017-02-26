@@ -18,7 +18,7 @@ app.get('/ui/madi.png', function (req, res) {
 });
 
 app.get('/aboutme', function(req, res){
-    res.send("I shall put up my profile shortly.");
+    res.sendFile('aboutMe.html');
 });
 
 app.get('/page2', function(req, res){
