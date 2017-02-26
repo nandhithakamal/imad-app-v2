@@ -5,6 +5,7 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
+counter = 0;
 app.get('/counter', function(req, res){
     counter += 1;
     res.send("This has been opened " + counter.toString() + " times");
