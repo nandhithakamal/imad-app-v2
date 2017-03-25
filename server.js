@@ -48,7 +48,7 @@ app.get('/newuser', function(req, res){
             
         }
         else{
-            res.send(JSON.stringify(result.rows));
+            res.send("User created successfully!");
         }
         
     });
