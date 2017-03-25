@@ -37,7 +37,7 @@ app.get('/', function (req, res) {
 
 function hash(input, salt){
     var hashed = crypto.pbkdf2Sync(input, salt, 10000, 512, 'sha512');
-    return hashed.toString('hex');
+    return ['pbkdf2', "10000", salt, hashed.toString('hex')].join('$');
 }
 
 var pool = new Pool(config);
@@ -73,6 +73,30 @@ app.get('/test-db', function(req, res){
     });
     
 });
+
+
+app.post('/login', function(req, res){
+    var username = req.body.username;
+    var password = req.body.password;
+    
+    pool.query('select * from users username = $1', [username], function(err, result){
+        if(err){
+            res.status(500).send(err.toString());
+            
+        }
+        else{
+            if(result.rows.length == 0){
+                res.send(err.status(400).send("Invalid username/password"));
+            }else{
+                var dbString = result.rows[0].password;
+                res.send("User created successfully!" + username);
+            }
+        }   
+        
+    });
+    
+});
+
 
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
