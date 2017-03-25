@@ -79,7 +79,7 @@ app.post('/login', function(req, res){
     var username = req.body.username;
     var password = req.body.password;
     
-    pool.query('select * from users username = $1', [username], function(err, result){
+    pool.query('select * from users where username = $1', [username], function(err, result){
         if(err){
             res.status(500).send(err.toString());
             
@@ -90,8 +90,14 @@ app.post('/login', function(req, res){
             }else{
                 var dbString = result.rows[0].password;
                 var salt = dbString.split('$')[2];
-                var hashedPassword = hah(password, salt);
-                res.send("User created successfully!" + username);
+                var hashedPassword = hash(password, salt);
+                if(hashedPassword === dbString){
+                     res.send("Logged in successfully!" + username);
+                }
+                else{
+                    res.send(err.status(400).send("Invalid username/password"));
+                }
+               
             }
         }   
         
