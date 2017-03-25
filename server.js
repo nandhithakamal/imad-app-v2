@@ -34,7 +34,7 @@ app.get('/', function (req, res) {
 
 function hash(input, salt){
     var hashed = crypto.pbkdf2(input, salt, 10000, 512, 'sha512');
-    return hashed;
+    return hashed.toString('hex');
 }
 
 
