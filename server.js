@@ -48,7 +48,7 @@ app.post('/newuser', function(req, res){
     var password = req.body.password;
     var salt = "BLah! bLaah! thIs is RandOM caPitAlIsatioN";
     var dbString = hash(password, salt);
-    pool.query('INSERT INTO users ("username", "password") VALUES(username, dbString)', function(err, result){
+    pool.query('INSERT INTO users (username, password) VALUES($1, $2)', [username, dbString], function(err, result){
         if(err){
             res.status(500).send(err.toString());
             
