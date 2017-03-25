@@ -37,7 +37,20 @@ function hash(input, salt){
     return hashed.toString('hex');
 }
 
-
+app.get('/newuser', function(req, res){
+    var salt = "BLah! bLaah! thIs is RandOM caPitAlIsatioN";
+    var dbString = hash(password, salt);
+    pool.query('INSERT INTO users VALUES(username, dbString)', function(err, result){
+        if(err){
+            res.status(500).send(err.toString());
+            
+        }
+        else{
+            res.send(JSON.stringify(result.rows));
+        }
+        
+    });
+})
 var pool = new Pool(config);
 
 app.get('/test-db', function(req, res){
