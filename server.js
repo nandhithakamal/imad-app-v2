@@ -46,7 +46,7 @@ app.post('/newuser', function(req, res){
     
     var username = req.body.username;
     var password = req.body.password;
-    var salt = "BLah! bLaah! thIs is RandOM caPitAlIsatioN";
+    var salt = crypto.randomBytes(256);
     var dbString = hash(password, salt);
     pool.query('INSERT INTO users (username, password) VALUES($1, $2)', [username, dbString], function(err, result){
         if(err){
@@ -85,10 +85,12 @@ app.post('/login', function(req, res){
             
         }
         else{
-            if(result.rows.length == 0){
+            if(result.rows.length === 0){
                 res.send(err.status(400).send("Invalid username/password"));
             }else{
                 var dbString = result.rows[0].password;
+                var salt = dbString.split('$')[2];
+                var hashedPassword = hah(password, salt);
                 res.send("User created successfully!" + username);
             }
         }   
