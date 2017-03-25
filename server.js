@@ -38,7 +38,7 @@ function hash(input, salt){
 }
 
 
-var pool = new Pool(config)
+var pool = new Pool(config);
 
 app.get('/test-db', function(req, res){
     pool.query('select * from test', function(err, result){
@@ -47,9 +47,9 @@ app.get('/test-db', function(req, res){
             
         }
         else{
-            res.send(JSON.stringify(result.'rows'));
+            res.send(JSON.stringify(result.rows));
         }
-    })
+    });
     
 });
 
