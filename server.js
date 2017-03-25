@@ -37,6 +37,8 @@ function hash(input, salt){
     return hashed.toString('hex');
 }
 
+var pool = new Pool(config);
+
 app.get('/newuser', function(req, res){
     var salt = "BLah! bLaah! thIs is RandOM caPitAlIsatioN";
     var dbString = hash(password, salt);
@@ -50,8 +52,8 @@ app.get('/newuser', function(req, res){
         }
         
     });
-})
-var pool = new Pool(config);
+});
+
 
 app.get('/test-db', function(req, res){
     pool.query('select * from test', function(err, result){
