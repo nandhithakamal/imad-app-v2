@@ -39,7 +39,7 @@ app.post('/newuser', function(req, res){
     
     var username = req.body.username;
     var password = req.body.password;
-    var maild = req.body.mailid;
+    var mailid = req.body.mailid;
     var salt = "fjoisfiofiemfksdmfkwaAFFRWG49094023992ksdhfsdfsdjfsdf";
     var dbString = hash(password, salt);
     pool.query('INSERT INTO users (username, password, mailid) VALUES($1, $2, $3)', [username, dbString, mailid], function(err, result){
