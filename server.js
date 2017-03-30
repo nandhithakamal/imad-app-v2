@@ -39,9 +39,10 @@ app.post('/newuser', function(req, res){
     
     var username = req.body.username;
     var password = req.body.password;
+    var maild = req.body.mailid;
     var salt = "fjoisfiofiemfksdmfkwaAFFRWG49094023992ksdhfsdfsdjfsdf";
     var dbString = hash(password, salt);
-    pool.query('INSERT INTO users (username, password) VALUES($1, $2)', [username, dbString], function(err, result){
+    pool.query('INSERT INTO users (username, password, mailid) VALUES($1, $2, $3)', [username, dbString], function(err, result){
         if(err){
             res.status(500).send(err.toString());
             
@@ -98,9 +99,7 @@ app.post('/login', function(req, res){
     
 });
 
-app.get('/register.css', function(req, res){
-    res.sendFile(path.join(__dirname + '/register.html'));
-});
+
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
