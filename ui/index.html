@@ -2,14 +2,38 @@
 <html>
     <head>
         <link href="/ui/style.css" rel="stylesheet" />
+        <link href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel = "stylesheet" />
     </head>
     <body>
-        <div>
-            <label>Username</label>
-            <input type = "text" id = "username" placeholder = "username"/>
-            <label>Password</label>
-            <input type = "password" id = "password" />
-            <input type = "submit" id = "submitButton"/>
+        <div id = "form">
+            <form class = "form-horizontal">
+                <div class = "form-group">
+                    <div class = "col-sm-2"></div>
+                    <div class = "col-sm-3">
+                        <label>Username</label>
+                    </div>
+                    <div class = "col-sm-5">
+                        <input type = "text" id = "username" placeholder = "username"/>
+                    </div>
+                    <div class = "col-sm-2"></div>
+                </div>
+                <div class = "form-group">
+                    <div class = "col-sm-2"></div>
+                    <div class = "col-sm-3">
+                        <label>Password</label>
+                    </div>
+                    <div class = "col-sm-5">
+                        <input type = "password" id = "password"/>
+                    </div>
+                    <div class = "col-sm-2"></div>
+                </div>
+                <input type = "submit" id = "submitButton"/>
+                <a href = "http://nandhithakamal.imad.hasura-app.io/register.html"><button class = "btn btn-default">Register</button></a>
+            </form>
         </div>
     </body>
 </html>
+
+
+
+
