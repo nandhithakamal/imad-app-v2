@@ -14,16 +14,9 @@ var config = {
     port: "5432",
 };
 
-
 var app = express();
 app.use(morgan('combined'));
 app.use(bodyParser.json());
-
-counter = 0;
-app.get('/counter', function(req, res){
-    counter += 1;
-    res.send("This has been opened " + counter.toString() + " times");
-});
 
 
 app.get('/hash/:input', function(req, res){
